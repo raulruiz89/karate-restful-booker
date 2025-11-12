@@ -1,0 +1,6 @@
+{
+    "lastname": "Only",
+    "totalprice": 100,
+    "depositpaid": true,
+    "bookingdates": { "checkin": "2025-11-10", "checkout": "2025-11-12" }
+}

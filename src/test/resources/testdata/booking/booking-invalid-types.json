@@ -1,0 +1,8 @@
+{
+    "firstname": "Error",
+    "lastname": "ErrorLastName",
+    "totalprice": "one hundred",
+    "depositpaid": "yes",
+    "bookingdates": { "checkin": "2025-11-10", "checkout": "12-11-2025" },
+    "additionalneeds": 45
+}

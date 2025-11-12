@@ -1,0 +1,4 @@
+{
+    "bookingid": "#number",
+    "booking": "#object"
+}

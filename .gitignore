@@ -1,0 +1,155 @@
+# ---------- Java / Maven ----------
+# Build output
+/target/
+**/target/
+
+# Compiled class files
+*.class
+
+# Test reports (also usually under target)
+**/surefire-reports/
+**/failsafe-reports/
+
+# JVM crash logs
+hs_err_pid*
+replay_pid*
+
+# ---------- Karate ----------
+# Karate HTML/JSON reports (sometimes written outside target)
+**/karate-reports/
+**/karate-reports_*/
+**/karate-summary.html
+**/karate-summary-json.txt
+**/karate-tags.html
+**/karate-timeline.html
+# Karate logs
+karate.log
+karate*.log
+
+# ---------- IDEs / Editors ----------
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# VS Code
+.vscode/
+.history/
+
+# Eclipse
+.project
+.classpath
+.settings/
+.factorypath
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# JetBrains Fleet
+.fleet/
+
+# ---------- Logs & Temp ----------
+*.log
+logs/
+*.tmp
+*.bak
+*~
+*.swp
+*.swo
+*.orig
+*.rej
+
+# ---------- OS-specific ----------
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ---------- Coverage ----------
+jacoco.exec
+*.exec
+
+# ---------- Environment / Secrets ----------
+.env
+.env.*.local
+
+# ---------- Static analysis ----------
+.scannerwork/
+.sonarlint/
+# ---- Maven / Java ----
+# Build output
+/target/
+**/target/
+
+# IDE / Editors
+# Eclipse
+.classpath
+.project
+.settings/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# VS Code
+.vscode/
+.history/
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# Logs & temp files
+*.log
+logs/
+*.tmp
+*.bak
+*~
+*.swp
+*.swo
+
+# OS-specific
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# JVM crash logs
+hs_err_pid*
+replay_pid*
+
+# Test reports (usually under target, but ignore generically too)
+**/surefire-reports/
+**/failsafe-reports/
+
+# Karate test artifacts (in case generated outside target)
+**/karate-reports/
+**/karate-reports_*/
+**/karate-summary.html
+**/karate-summary-json.txt
+**/karate-tags.html
+**/karate-timeline.html
+
+# Coverage
+jacoco.exec
+*.exec
+
+# Environment files
+.env
+.env.*.local
