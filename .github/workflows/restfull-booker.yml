@@ -35,8 +35,12 @@ jobs:
           java-version: '21'
           cache: 'maven'
 
-      - name: Run Maven tests (Karate, exclude @negative)
-        run: mvn -B -Dtest=BookerTest -Dkarate.options="--tags ~@negative" test
+      - name: Run Maven tests - smoke (@smoke)
+        run: mvn -B -Dtest=BookerTest -Dkarate.options="--tags @smoke" test
+
+      - name: Run Maven tests - regression
+        if: always()
+        run: mvn -B -Dtest=BookerTest -Dkarate.options="--tags @regression" test
 
       - name: Show Karate report folders (debug)
         if: always()
