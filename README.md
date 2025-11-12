@@ -112,7 +112,7 @@ mvn clean test
 
 ### Run Specific Test Categories
 
-**Exclude negative tests** (recommended for CI/CD):
+**Exclude negative tests** (optional isolation):
 ```bash
 mvn test -Dkarate.options="--tags ~@negative"
 ```
@@ -161,10 +161,19 @@ mvn test -Dtest=BookerTest -Dkarate.options="classpath:booker/functional/booking
 The project includes a GitHub Actions workflow that:
 
 1. **Runs on**: Push/PR to `develop` or `main` branches, or manual trigger
-2. **Executes**: All tests except `@negative` scenarios
-3. **Generates**: Karate HTML test reports
-4. **Deploys**: Test reports to GitHub Pages automatically
+2. **Executes (two steps)**:
+   - Step 1: `@smoke` (fast critical-path checks)
+   - Step 2: `@regression` (includes `@negative` scenarios)
+3. **Generates**: Karate HTML test reports for each run
+4. **Deploys**: Test reports to GitHub Pages automatically (deployment only from `main`)
 5. **Retention**: Reports stored for 30 days
+
+Workflow commands:
+
+```bash
+mvn -B -Dtest=BookerTest -Dkarate.options="--tags @smoke" test
+mvn -B -Dtest=BookerTest -Dkarate.options="--tags @regression" test
+```
 
 ### Workflow Configuration
 
@@ -186,8 +195,8 @@ After running tests locally, reports are available at:
 
 ### GitHub Pages Reports
 
-Automated test reports are deployed to GitHub Pages after each workflow run:
-- URL: `https://github.com/raulruiz89/karate-restful-booker/`
+Automated test reports are deployed to GitHub Pages after each workflow run. The site lists the latest run and historical archives:
+- URL: `https://raulruiz89.github.io/karate-restful-booker/`
 
 ## 🧪 Test Scenarios Covered
 
@@ -206,7 +215,6 @@ Automated test reports are deployed to GitHub Pages after each workflow run:
 - Deterministic ID handling
 
 ### Security Tests
-- Valid authentication
 - Invalid credentials handling
 - Unauthorized access (403)
 - SQL injection protection

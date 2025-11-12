@@ -77,6 +77,11 @@ Feature: /booking - CRUD test cases and filtering
     * def bookingId = create.bookingId
     * def updated = utils.buildBooking({ firstname: 'Nancy', lastname: 'Toledo', additionalneeds: 'Late checkout' })
 
+    # Get auth token for update operation
+    * def auth = call read('classpath:booker/common/auth.feature@getToken')
+    * def authCookie = 'token=' + auth.token
+    * configure headers = { Accept: 'application/json', 'Content-Type': 'application/json', Cookie: '#(authCookie)' }
+
     # Update booking and validate
     Given path 'booking', bookingId
     And request updated
@@ -86,12 +91,17 @@ Feature: /booking - CRUD test cases and filtering
 
  
   Scenario: Partial update (PATCH)
-    #create booking first
+    # Create booking first
     * def create = call read('classpath:booker/common/create-booking.feature') { opts: {} }
     * def bookingId = create.bookingId
     * def patchBody = { firstname: 'Leonardo', additionalneeds: 'Dinner' }
 
-    #validate partial update
+    # Get auth token for patch operation
+    * def auth = call read('classpath:booker/common/auth.feature@getToken')
+    * def authCookie = 'token=' + auth.token
+    * configure headers = { Accept: 'application/json', 'Content-Type': 'application/json', Cookie: '#(authCookie)' }
+
+    # Validate partial update
     Given path 'booking', bookingId
     And request patchBody
     When method patch
@@ -101,16 +111,21 @@ Feature: /booking - CRUD test cases and filtering
 
  
   Scenario: Delete booking and validate (Happy Path)
-     #create booking first
+    # Create booking first
     * def create = call read('classpath:booker/common/create-booking.feature') { opts: {} }
     * def bookingId = create.bookingId
 
-    #delete booking
+    # Get auth token for delete operation
+    * def auth = call read('classpath:booker/common/auth.feature@getToken')
+    * def authCookie = 'token=' + auth.token
+    * configure headers = { Accept: 'application/json', 'Content-Type': 'application/json', Cookie: '#(authCookie)' }
+
+    # Delete booking
     Given path 'booking', bookingId
     When method delete
     Then status 201
 
-    #validate booking is deleted
+    # Validate booking is deleted
     Given path 'booking', bookingId
     When method get
     Then status 404

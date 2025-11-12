@@ -43,6 +43,11 @@ Feature: /booking - non-functional tests (performance, resilience)
     * def create = call read('classpath:booker/common/create-booking.feature') { opts: {} }
     * def id = create.bookingId
 
+    # Get auth token for delete operation
+    * def auth = call read('classpath:booker/common/auth.feature@getToken')
+    * def authCookie = 'token=' + auth.token
+    * configure headers = { Accept: 'application/json', 'Content-Type': 'application/json', Cookie: '#(authCookie)' }
+
     # Delete the booking
     Given path 'booking', id
     When method delete
